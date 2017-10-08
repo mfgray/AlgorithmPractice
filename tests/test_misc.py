@@ -1,7 +1,10 @@
 ''' Tests for the misc algorithms'''
 
 import pytest
-from ..core import misc
+import sys
+sys.path.append("..")
+
+from core import misc
 
 def setup_module(module):
     '''set up state for module algorithm tests'''

@@ -6,7 +6,6 @@ The module contains common algorithms in python as practice
 
 def get_fib(nth_fib):
     '''Returns the nth fibonnacci number'''
-
     if nth_fib <= 0:
         return 0
     elif nth_fib == 1:

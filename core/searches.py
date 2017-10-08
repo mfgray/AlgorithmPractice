@@ -32,4 +32,4 @@ def binary_search(input_array, value):
 if __name__ == '__main__':
     # Run automated tests
     import pytest
-    pytest.main(['-sv', '../tests'])
+    pytest.main(['-sv', '../tests/test_searches.py'])
