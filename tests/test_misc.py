@@ -1,7 +1,6 @@
 ''' Tests for the misc algorithms'''
-
-import pytest
 import sys
+import pytest
 sys.path.append("..")
 
 from core import misc
@@ -34,9 +33,33 @@ TESTDATA = [
     ]
 
 @pytest.mark.parametrize("value_in, expected", TESTDATA)
-def test_list(value_in, expected):
+def test_fib(value_in, expected):
     '''Tests search on ideally formatted array'''
     print('test_get_fib')
     print('test value:', value_in)
     print('expected result:', expected)
     assert misc.get_fib(value_in) == expected
+
+@pytest.mark.parametrize("value_in, expected", TESTDATA)
+def test_fib_iter(value_in, expected):
+    '''Tests search on ideally formatted array'''
+    print('test_get_fib_iter')
+    print('test value:', value_in)
+    print('expected result:', expected)
+    assert misc.get_fib_iter(value_in) == expected
+
+@pytest.mark.parametrize("value_in, expected", TESTDATA)
+def test_fib_recur_iter(value_in, expected):
+    '''Tests search on ideally formatted array'''
+    print('test_get_fib_iter')
+    print('test value:', value_in)
+    print('expected result:', expected)
+    assert misc.get_fib_recur_iter(value_in) == expected
+
+@pytest.mark.parametrize("value_in, expected", TESTDATA)
+def test_fib_recur_memo(value_in, expected):
+    '''Tests search on ideally formatted array'''
+    print('test_get_fib_iter')
+    print('test value:', value_in)
+    print('expected result:', expected)
+    assert misc.get_fib_recur_memo(value_in) == expected
