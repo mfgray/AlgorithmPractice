@@ -4,7 +4,7 @@ import sys
 import random
 import pytest
 sys.path.append("..")
-from core import sorts
+from ..core import sorts
 
 def setup_module(module):
     '''set up state for running the sort module algorithm tests'''
@@ -43,10 +43,21 @@ def test_arr(request):
 @pytest.mark.parametrize("test_arr, ordered_arr",
                          TEST_DATA, indirect=['test_arr'])
 def test_bubble(test_arr, ordered_arr):
-    '''Tests search on ideally formatted array'''
+    '''Tests sort on ideally formatted array'''
     print('test_bubble_sort')
     print('test array:', test_arr)
     print('sorted array:', ordered_arr)
     sorts.bubble_sort(test_arr)
     print('bubble sorted array:', test_arr)
+    assert test_arr == ordered_arr
+
+@pytest.mark.parametrize("test_arr, ordered_arr",
+                         TEST_DATA, indirect=['test_arr'])
+def test_selection(test_arr, ordered_arr):
+    '''Tests sort on ideally formatted array'''
+    print('test_select_sort')
+    print('test array:', test_arr)
+    print('sorted array:', ordered_arr)
+    sorts.selection_sort(test_arr)
+    print('selection sorted array:', test_arr)
     assert test_arr == ordered_arr

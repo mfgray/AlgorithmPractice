@@ -15,6 +15,17 @@ def bubble_sort(arr_in):
             if arr_in[j] > arr_in[j+1]:
                 swap_elems(arr_in, j+1, j)
 
+def selection_sort(arr_in):
+    '''Implementation of the selection sort.
+    Sorts the array in place'''
+    for i, _ in enumerate(arr_in):
+        low_idx = i
+
+        for j in range(i + 1, len(arr_in)):
+            if arr_in[j] < arr_in[low_idx]:
+                low_idx = j
+
+        swap_elems(arr_in, i, low_idx)
 
 def swap_elems(arr_in, index1, index2):
     '''Helper that swaps the position of the array entries by index
