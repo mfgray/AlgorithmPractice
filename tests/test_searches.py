@@ -1,7 +1,9 @@
 ''' Tests for the array/list search algorithms'''
 
+import sys
 import pytest
-from ..core import searches
+sys.path.append("..")
+from core import searches
 
 def setup_module(module):
     '''set up state for running the search module algorithm tests'''
