@@ -60,6 +60,54 @@ def insertion_sort2(arr_in):
         arr_in[j] = val
 
 
+def merge_sort(arr_in):
+    '''Implementation of merge sort.
+    Sorts the array in place'''
+    lhs = 0
+    rhs = len(arr_in) - 1
+    arr_cop = [val for val in arr_in]
+    merge_sort_partition_(arr_in, arr_cop, lhs, rhs)
+
+def merge_sort_partition_(arr_in, arr_cop, lhs, rhs):
+    '''Recursion and divide step of merge sort.
+    Sorts the array in place'''
+    if rhs > lhs:
+        #mid index
+        mid = (rhs + lhs)//2
+
+        #divide
+        merge_sort_partition_(arr_in, arr_cop, lhs, mid)
+        merge_sort_partition_(arr_in, arr_cop, mid + 1, rhs)
+
+        #merging and sorting
+        merge_sort_combine_(arr_in, arr_cop, lhs, mid, rhs)
+
+def merge_sort_combine_(arr_in, arr_cop, lhs, mid, rhs):
+    '''Combine step of merge sort.
+    Sorts the array in place'''
+    left = lhs
+    right = mid + 1
+    i = lhs
+
+    while (left <= mid) and (right <= rhs):
+        if arr_cop[left] <= arr_cop[right]:
+            arr_in[i] = arr_cop[left]
+            i += 1
+            left += 1
+        else:
+            arr_in[i] = arr_cop[right]
+            i += 1
+            right += 1
+
+    if left <= mid:
+        arr_in[i:rhs+1] = arr_cop[left:mid+1]
+    if right <= rhs:
+        arr_in[i:rhs+1] = arr_cop[right:rhs+1]
+
+    arr_cop[lhs:rhs+1] = [val for val in arr_in[lhs:rhs+1]]
+
+
+
 # ---------------- sort helpers -----------------
 
 def swap_elems(arr_in, index1, index2):
