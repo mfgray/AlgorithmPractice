@@ -30,14 +30,19 @@ TEST_DATA = [
     ([1, 2, 3], [1, 2, 3]),
     (list(range(20)), list(range(20))),
     ([1, 1, 1, 1, 1, 2, 555], [1, 1, 1, 1, 1, 2, 555]),
-    ([1, 1, 1, 1, 1], [1, 1, 1, 1, 1])
+    ([1, 1, 1, 1, 1], [1, 1, 1, 1, 1]),
+    ([1, 1, 3, 3, 6, 6, 8, 8], [1, 1, 3, 3, 6, 6, 8, 8]),
+    ([1.1, 0.9, 0.99, 1, 1.01], [0.9, 0.99, 1, 1.01, 1.1])
     ]
 
 SORT_FUNCS = [
     (sorts.bubble_sort),
     (sorts.selection_sort),
     (sorts.insertion_sort),
-    (sorts.insertion_sort2)
+    (sorts.insertion_sort2),
+    (sorts.merge_sort),
+    (sorts.merge_sort),
+    (sorts.quick_sort)
     ]
 
 @pytest.fixture(scope='function')
