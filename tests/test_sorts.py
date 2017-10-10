@@ -61,3 +61,14 @@ def test_selection(test_arr, ordered_arr):
     sorts.selection_sort(test_arr)
     print('selection sorted array:', test_arr)
     assert test_arr == ordered_arr
+
+@pytest.mark.parametrize("test_arr, ordered_arr",
+                         TEST_DATA, indirect=['test_arr'])
+def test_insertion(test_arr, ordered_arr):
+    '''Tests sort on ideally formatted array'''
+    print('test_insertion_sort')
+    print('test array:', test_arr)
+    print('sorted array:', ordered_arr)
+    sorts.insertion_sort(test_arr)
+    print('insertion sorted array:', test_arr)
+    assert test_arr == ordered_arr

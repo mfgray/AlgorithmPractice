@@ -27,6 +27,27 @@ def selection_sort(arr_in):
 
         swap_elems(arr_in, i, low_idx)
 
+def insertion_sort(arr_in):
+    '''Implementation of the selection sort.
+    Sorts the array in place'''
+
+    for i in range(1, len(arr_in)):
+        val = arr_in[i]
+        idx = i
+
+        for j in range(i, 0, -1):
+
+            if val < arr_in[j - 1]:
+                arr_in[j] = arr_in[j - 1]
+                idx -= 1
+            else:
+                break
+
+        arr_in[idx] = val
+
+
+# ---------------- sort helpers -----------------
+
 def swap_elems(arr_in, index1, index2):
     '''Helper that swaps the position of the array entries by index
     arr_in - the array for with the elements to be swapped
