@@ -33,6 +33,13 @@ TEST_DATA = [
     ([1, 1, 1, 1, 1], [1, 1, 1, 1, 1])
     ]
 
+SORT_FUNCS = [
+    (sorts.bubble_sort),
+    (sorts.selection_sort),
+    (sorts.insertion_sort),
+    (sorts.insertion_sort2)
+    ]
+
 @pytest.fixture(scope='function')
 def test_arr(request):
     '''Shuffles the test data'''
@@ -40,35 +47,14 @@ def test_arr(request):
     random.shuffle(request.param)
     return request.param
 
+@pytest.mark.parametrize("sort_func", SORT_FUNCS)
 @pytest.mark.parametrize("test_arr, ordered_arr",
                          TEST_DATA, indirect=['test_arr'])
-def test_bubble(test_arr, ordered_arr):
+def test_sorts(test_arr, ordered_arr, sort_func):
     '''Tests sort on ideally formatted array'''
-    print('test_bubble_sort')
+    print('testing ' + sort_func.__name__)
     print('test array:', test_arr)
     print('sorted array:', ordered_arr)
-    sorts.bubble_sort(test_arr)
-    print('bubble sorted array:', test_arr)
-    assert test_arr == ordered_arr
-
-@pytest.mark.parametrize("test_arr, ordered_arr",
-                         TEST_DATA, indirect=['test_arr'])
-def test_selection(test_arr, ordered_arr):
-    '''Tests sort on ideally formatted array'''
-    print('test_select_sort')
-    print('test array:', test_arr)
-    print('sorted array:', ordered_arr)
-    sorts.selection_sort(test_arr)
-    print('selection sorted array:', test_arr)
-    assert test_arr == ordered_arr
-
-@pytest.mark.parametrize("test_arr, ordered_arr",
-                         TEST_DATA, indirect=['test_arr'])
-def test_insertion(test_arr, ordered_arr):
-    '''Tests sort on ideally formatted array'''
-    print('test_insertion_sort')
-    print('test array:', test_arr)
-    print('sorted array:', ordered_arr)
-    sorts.insertion_sort(test_arr)
-    print('insertion sorted array:', test_arr)
+    sort_func(test_arr)
+    print(sort_func.__name__ + ' sorted array:\n\t', test_arr)
     assert test_arr == ordered_arr
