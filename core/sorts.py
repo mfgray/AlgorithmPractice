@@ -45,6 +45,20 @@ def insertion_sort(arr_in):
 
         arr_in[idx] = val
 
+def insertion_sort2(arr_in):
+    '''Implementation of the selection sort.
+    Sorts the array in place'''
+
+    for i in range(1, len(arr_in)):
+        val = arr_in[i]
+        j = i
+
+        while (j - 1 >= 0) and (arr_in[j - 1] > val):
+            arr_in[j] = arr_in[j - 1]
+            j -= 1
+
+        arr_in[j] = val
+
 
 # ---------------- sort helpers -----------------
 
