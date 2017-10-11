@@ -48,6 +48,31 @@ def fib_recur_memo(nth_fib, memo):
                      + fib_recur_memo(nth_fib - 2, memo))
     return memo[nth_fib]
 
+def is_palindrome(str_in):
+    '''Checks if a string is a palindrome
+    str_in - a string not containing punctuation aside from spaces'''
+    plain_str = str_in.replace(' ', '').lower()
+    rev_str = ''.join(reversed(plain_str))
+
+    if rev_str == plain_str:
+        return True
+    return False
+
+def is_palindrome2(str_in):
+    '''Checks if a string is a palindrome
+    str_in - a string not containing punctuation aside from spaces'''
+    plain_str = str_in.replace(' ', '').lower()
+
+    return is_palindrome_helper(plain_str)
+
+def is_palindrome_helper(plain_str):
+
+    if (len(plain_str) == 1) or (len(plain_str) == 0):
+        return True
+    elif plain_str[0] == plain_str[-1]:
+        return is_palindrome_helper(plain_str[1:-1])
+    return False
+
 
 if __name__ == '__main__':
     # Run automated tests

@@ -23,7 +23,7 @@ def teardown_function(function):
     print('teardown_function  function:{!s}'.format(function.__name__))
 
 
-TESTDATA = [
+FIB_TESTDATA = [
     (0, 0),
     (1, 1),
     (1, 1),
@@ -39,11 +39,29 @@ FIB_FUNCS = [
     (misc.get_fib_recur_memo)
 ]
 
+PAL_DATA = [
+    ('Rat', False),
+    ('Civic', True),
+    ('Evil olive', True),
+    ('a', True)
+]
+
+PAL_FUNCS = [
+    (misc.is_palindrome),
+    (misc.is_palindrome2)
+]
+
 @pytest.mark.parametrize("func", FIB_FUNCS)
-@pytest.mark.parametrize("value_in, expected", TESTDATA)
+@pytest.mark.parametrize("value_in, expected", FIB_TESTDATA)
 def test_fib(value_in, expected, func):
     '''Tests search on ideally formatted array'''
     print('Test of' + func.__name__)
     print('test value:', value_in)
     print('expected result:', expected)
     assert func(value_in) == expected
+
+@pytest.mark.parametrize("pal_func", PAL_FUNCS)
+@pytest.mark.parametrize('string_in, expected_bool', PAL_DATA)
+def test_palindrome(string_in, expected_bool, pal_func):
+    '''Test the palindrom checker'''
+    assert pal_func(string_in) == expected_bool
