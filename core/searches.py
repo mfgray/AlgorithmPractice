@@ -29,6 +29,24 @@ def binary_search(input_array, value):
 
     return -1
 
+
+def min_search(input_array):
+    '''Returns the index of the minimum value in the array input_array
+    If values are tied, returns the index of the first encountered
+    '''
+
+    current_low_index = 0
+    current_low = input_array[0]
+
+    for i, val in enumerate(input_array):
+        if val < current_low:
+            current_low_index = i
+            current_low = val
+
+    return current_low_index
+
+
+
 if __name__ == '__main__':
     # Run automated tests
     import pytest

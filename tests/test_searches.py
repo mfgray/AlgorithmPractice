@@ -3,7 +3,7 @@
 import sys
 import pytest
 sys.path.append("..")
-from core import searches
+from ..core import searches
 
 def setup_module(module):
     '''set up state for running the search module algorithm tests'''
@@ -36,6 +36,14 @@ TESTDATA = [
     ([-1, 2, 3, 4, 5], 2, 1)
     ]
 
+MIN_TEST_DATA = [
+    ([1, 2, 3, 4, 5, 8], 0),
+    ([6, 6, 3, 4, 5, 8], 2),
+    ([1], 0),
+    ([1, 1, 1], 0),
+    ([6, 6, 3, 3, 5, -8], 5)
+]
+
 @pytest.mark.parametrize("test_arr, value, value_idx", TESTDATA)
 def test_list(test_arr, value, value_idx):
     '''Tests search on ideally formatted array'''
@@ -43,3 +51,11 @@ def test_list(test_arr, value, value_idx):
     print('test array:', test_arr)
     print('test value:', value, 'test value index:', value_idx)
     assert searches.binary_search(test_arr, value) == value_idx
+
+@pytest.mark.parametrize("test_arr, value_idx", MIN_TEST_DATA)
+def test_min_search(test_arr, value_idx):
+    '''Tests search on ideally formatted array'''
+    print('test min')
+    print('test array:', test_arr)
+    print('test value index:', value_idx)
+    assert searches.min_search(test_arr) == value_idx
