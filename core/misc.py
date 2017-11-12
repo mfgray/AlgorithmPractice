@@ -66,15 +66,48 @@ def is_palindrome2(str_in):
     return is_palindrome_helper(plain_str)
 
 def is_palindrome_helper(plain_str):
-
+    '''Tests if the string of lower case letters is a palindrome
+    Recursively compares the first and last letter,
+    returning false if not equal, calling itself on the inner characters
+    if equal until the length is 1 or 0 and then return True'''
     if (len(plain_str) == 1) or (len(plain_str) == 0):
         return True
     elif plain_str[0] == plain_str[-1]:
         return is_palindrome_helper(plain_str[1:-1])
     return False
 
+def anagram_checker1(str_in1, str_in2):
+    '''Returns True if str_in1 and str_in2 are anagrams'''
+
+    result = True
+
+    tally_str1 = letter_tally(str_in1)
+    tally_str2 = letter_tally(str_in2)
+
+    if set(tally_str1) == set(tally_str2):
+        for key in tally_str1:
+            if tally_str1[key] == tally_str2[key]:
+                pass
+            else:
+                result = False
+    else:
+        result = False
+
+    return result
+
+def letter_tally(str_in):
+    '''helper function for anagram checker 1.
+    returns a dictionary with the unique letters as keys and
+    the number of occurances as the values'''
+    tally = {}
+    for letter in str_in:
+        if letter in tally:
+            tally[letter] += 1
+        else:
+            tally[letter] = 1
+    return tally
 
 if __name__ == '__main__':
     # Run automated tests
     import pytest
-    pytest.main(['-sv', '../tests'])
+    pytest.main(['-sv', '../tests/test_misc.py'])

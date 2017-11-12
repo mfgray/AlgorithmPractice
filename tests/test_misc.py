@@ -51,6 +51,14 @@ PAL_FUNCS = [
     (misc.is_palindrome2)
 ]
 
+ANA_DATA = [
+    ('a', 'a', True),
+    ('a', 'b', False),
+    ('abc', 'bca', True),
+    ('thethebirdbirddog', 'birdthedogthebird', True),
+    ('thethebirdbirddog', 'facebook', False)
+]
+
 @pytest.mark.parametrize("func", FIB_FUNCS)
 @pytest.mark.parametrize("value_in, expected", FIB_TESTDATA)
 def test_fib(value_in, expected, func):
@@ -65,3 +73,8 @@ def test_fib(value_in, expected, func):
 def test_palindrome(string_in, expected_bool, pal_func):
     '''Test the palindrom checker'''
     assert pal_func(string_in) == expected_bool
+
+@pytest.mark.parametrize('str_in1, str_in2, expected_bool', ANA_DATA)
+def test_anagram(str_in1, str_in2, expected_bool):
+    '''Test the anagram checker'''
+    assert misc.anagram_checker1(str_in1, str_in2) == expected_bool
